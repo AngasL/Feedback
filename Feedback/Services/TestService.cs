@@ -8,9 +8,9 @@ namespace Feedback.Services
 {
     public class TestService : ITestService
     {
-        private IStudentRepository _repository;
+        private ISchoolRepository _repository;
 
-        public TestService(IStudentRepository repository)
+        public TestService(ISchoolRepository repository)
         {
             this._repository = repository;
         }
