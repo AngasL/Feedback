@@ -13,7 +13,7 @@ namespace Feedback.Repositories
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Models.Feedback> Feedbacks { get; set; }
-        public virtual DbSet<Attendence> Attendences { get; set; }
+        public virtual DbSet<Attendance> Attendences { get; set; }
         public virtual DbSet<Category> Catetories { get; set; }
 
         public DbSet<Grade> Grades { set; get; }

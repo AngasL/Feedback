@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Feedback.Models
 {
-    public class Attendence
+    public class Attendance
     {
         [Key]
         public virtual int AttendenceId { get; set; }

@@ -7,17 +7,17 @@ namespace Feedback.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Attendences",
+                "dbo.Attendances",
                 c => new
                     {
-                        AttendenceId = c.Int(nullable: false, identity: true),
+                        attendanceId = c.Int(nullable: false, identity: true),
                         ArravalTime = c.DateTime(nullable: false),
                         LeavingTime = c.DateTime(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         TeacherId = c.Int(),
                         StudentId = c.Int(),
                     })
-                .PrimaryKey(t => t.AttendenceId)
+                .PrimaryKey(t => t.attendanceId)
                 .ForeignKey("dbo.Teachers", t => t.TeacherId)
                 .ForeignKey("dbo.Students", t => t.StudentId)
                 .Index(t => t.TeacherId)
@@ -87,21 +87,21 @@ namespace Feedback.Migrations
             DropForeignKey("dbo.Feedbacks", "TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.Feedbacks", "StudentId", "dbo.Students");
             DropForeignKey("dbo.Feedbacks", "CatetoryId", "dbo.Categories");
-            DropForeignKey("dbo.Attendences", "StudentId", "dbo.Students");
+            DropForeignKey("dbo.attendances", "StudentId", "dbo.Students");
             DropForeignKey("dbo.Students", "GradeId", "dbo.Grades");
-            DropForeignKey("dbo.Attendences", "TeacherId", "dbo.Teachers");
+            DropForeignKey("dbo.attendances", "TeacherId", "dbo.Teachers");
             DropIndex("dbo.Feedbacks", new[] { "TeacherId" });
             DropIndex("dbo.Feedbacks", new[] { "StudentId" });
             DropIndex("dbo.Feedbacks", new[] { "CatetoryId" });
             DropIndex("dbo.Students", new[] { "GradeId" });
-            DropIndex("dbo.Attendences", new[] { "StudentId" });
-            DropIndex("dbo.Attendences", new[] { "TeacherId" });
+            DropIndex("dbo.attendances", new[] { "StudentId" });
+            DropIndex("dbo.attendances", new[] { "TeacherId" });
             DropTable("dbo.Feedbacks");
             DropTable("dbo.Categories");
             DropTable("dbo.Grades");
             DropTable("dbo.Students");
             DropTable("dbo.Teachers");
-            DropTable("dbo.Attendences");
+            DropTable("dbo.attendances");
         }
     }
 }
