@@ -64,7 +64,7 @@ namespace Feedback.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ITestService>().To<TestService>();
-            kernel.Bind<IStudentRepository>().To<StudentRepository>();
+            kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
         }        
     }
 }

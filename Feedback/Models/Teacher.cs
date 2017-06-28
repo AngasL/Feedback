@@ -6,11 +6,10 @@ using System.Web;
 
 namespace Feedback.Models
 {
-    public class Grade
+    public class Teacher
     {
         [Key]
-        public virtual int GradeId { get; set; }
+        public virtual int TeacherId { get; set; }
         public virtual string Name { get; set; }
-
     }
 }

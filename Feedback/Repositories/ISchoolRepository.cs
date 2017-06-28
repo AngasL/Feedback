@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Feedback.Repositories
 {
-    public interface IStudentRepository
+    public interface ISchoolRepository
     {
         Student GetStudent(int id);
     }
