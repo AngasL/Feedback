@@ -1,6 +1,5 @@
 namespace Feedback.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class InitialMigration : DbMigration
@@ -15,14 +14,14 @@ namespace Feedback.Migrations
                         ArravalTime = c.DateTime(nullable: false),
                         LeavingTime = c.DateTime(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
-                        RecordedBy_TeacherId = c.Int(),
-                        Student_StudentId = c.Int(),
+                        TeacherId = c.Int(),
+                        StudentId = c.Int(),
                     })
                 .PrimaryKey(t => t.AttendenceId)
-                .ForeignKey("dbo.Teachers", t => t.RecordedBy_TeacherId)
-                .ForeignKey("dbo.Students", t => t.Student_StudentId)
-                .Index(t => t.RecordedBy_TeacherId)
-                .Index(t => t.Student_StudentId);
+                .ForeignKey("dbo.Teachers", t => t.TeacherId)
+                .ForeignKey("dbo.Students", t => t.StudentId)
+                .Index(t => t.TeacherId)
+                .Index(t => t.StudentId);
             
             CreateTable(
                 "dbo.Teachers",
@@ -39,11 +38,11 @@ namespace Feedback.Migrations
                     {
                         StudentId = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Grade_GradeId = c.Int(),
+                        GradeId = c.Int(),
                     })
                 .PrimaryKey(t => t.StudentId)
-                .ForeignKey("dbo.Grades", t => t.Grade_GradeId)
-                .Index(t => t.Grade_GradeId);
+                .ForeignKey("dbo.Grades", t => t.GradeId)
+                .Index(t => t.GradeId);
             
             CreateTable(
                 "dbo.Grades",
@@ -69,34 +68,34 @@ namespace Feedback.Migrations
                     {
                         FeedbackId = c.Int(nullable: false, identity: true),
                         Mark = c.Int(nullable: false),
-                        Category_CatetoryId = c.Int(),
-                        Student_StudentId = c.Int(),
-                        Teacher_TeacherId = c.Int(),
+                        CatetoryId = c.Int(),
+                        StudentId = c.Int(),
+                        TeacherId = c.Int(),
                     })
                 .PrimaryKey(t => t.FeedbackId)
-                .ForeignKey("dbo.Categories", t => t.Category_CatetoryId)
-                .ForeignKey("dbo.Students", t => t.Student_StudentId)
-                .ForeignKey("dbo.Teachers", t => t.Teacher_TeacherId)
-                .Index(t => t.Category_CatetoryId)
-                .Index(t => t.Student_StudentId)
-                .Index(t => t.Teacher_TeacherId);
+                .ForeignKey("dbo.Categories", t => t.CatetoryId)
+                .ForeignKey("dbo.Students", t => t.StudentId)
+                .ForeignKey("dbo.Teachers", t => t.TeacherId)
+                .Index(t => t.CatetoryId)
+                .Index(t => t.StudentId)
+                .Index(t => t.TeacherId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Feedbacks", "Teacher_TeacherId", "dbo.Teachers");
-            DropForeignKey("dbo.Feedbacks", "Student_StudentId", "dbo.Students");
-            DropForeignKey("dbo.Feedbacks", "Category_CatetoryId", "dbo.Categories");
-            DropForeignKey("dbo.Attendences", "Student_StudentId", "dbo.Students");
-            DropForeignKey("dbo.Students", "Grade_GradeId", "dbo.Grades");
-            DropForeignKey("dbo.Attendences", "RecordedBy_TeacherId", "dbo.Teachers");
-            DropIndex("dbo.Feedbacks", new[] { "Teacher_TeacherId" });
-            DropIndex("dbo.Feedbacks", new[] { "Student_StudentId" });
-            DropIndex("dbo.Feedbacks", new[] { "Category_CatetoryId" });
-            DropIndex("dbo.Students", new[] { "Grade_GradeId" });
-            DropIndex("dbo.Attendences", new[] { "Student_StudentId" });
-            DropIndex("dbo.Attendences", new[] { "RecordedBy_TeacherId" });
+            DropForeignKey("dbo.Feedbacks", "TeacherId", "dbo.Teachers");
+            DropForeignKey("dbo.Feedbacks", "StudentId", "dbo.Students");
+            DropForeignKey("dbo.Feedbacks", "CatetoryId", "dbo.Categories");
+            DropForeignKey("dbo.Attendences", "StudentId", "dbo.Students");
+            DropForeignKey("dbo.Students", "GradeId", "dbo.Grades");
+            DropForeignKey("dbo.Attendences", "TeacherId", "dbo.Teachers");
+            DropIndex("dbo.Feedbacks", new[] { "TeacherId" });
+            DropIndex("dbo.Feedbacks", new[] { "StudentId" });
+            DropIndex("dbo.Feedbacks", new[] { "CatetoryId" });
+            DropIndex("dbo.Students", new[] { "GradeId" });
+            DropIndex("dbo.Attendences", new[] { "StudentId" });
+            DropIndex("dbo.Attendences", new[] { "TeacherId" });
             DropTable("dbo.Feedbacks");
             DropTable("dbo.Categories");
             DropTable("dbo.Grades");
