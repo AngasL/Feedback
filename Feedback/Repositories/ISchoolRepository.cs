@@ -10,5 +10,7 @@ namespace Feedback.Repositories
     public interface ISchoolRepository
     {
         Student GetStudent(int id);
+        IEnumerable<Attendance> GetAttendances(int gradeId);
+        IEnumerable<Models.Feedback> GetAllFeedbacks();
     }
 }

@@ -63,7 +63,8 @@ namespace Feedback.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ITestService>().To<TestService>();
+            kernel.Bind<ISchoolService>().To<SchoolService>();
+            kernel.Bind<IFeedbackService>().To<FeedbackService>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
         }        
     }

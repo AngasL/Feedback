@@ -9,14 +9,14 @@ namespace Feedback.Controllers
 {
     public class HomeController : Controller
     {
-        private ITestService _service;
+        private ISchoolService _service;
 
         public HomeController()
         {
 
         }
 
-        public HomeController(ITestService service)
+        public HomeController(ISchoolService service)
         {
             this._service = service;
         }

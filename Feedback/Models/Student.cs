@@ -12,6 +12,8 @@ namespace Feedback.Models
         [Key]
         public virtual int StudentId { get; set; }
         public virtual string Name { get; set; }
+        [ForeignKey("Grade")]
+        public int GradeId { get; set; }
         public virtual Grade Grade { get; set; }
     }
 }
