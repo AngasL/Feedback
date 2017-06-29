@@ -11,5 +11,7 @@ namespace Feedback.Models
         [Key]
         public virtual int TeacherId { get; set; }
         public virtual string Name { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

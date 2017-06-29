@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Feedback.Services
 {
-    public interface ITestService
+    public interface IFeedbackService
     {
-        string GetServiceName();
+        IEnumerable<Feedback.Models.Feedback> GetAllFeedbacks();
     }
 }

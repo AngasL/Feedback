@@ -13,7 +13,7 @@ namespace Feedback.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706280458124_InitialMigration"; }
+            get { return "201706290321163_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

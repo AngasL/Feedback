@@ -6,10 +6,12 @@ using System.Web;
 
 namespace Feedback.Models
 {
-    public class Category
+    public class Course
     {
         [Key]
-        public virtual int CatetoryId { get; set; }
+        public virtual int CourseId { get; set; }
         public virtual string Description { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
     }
 }

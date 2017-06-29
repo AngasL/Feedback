@@ -1,0 +1,24 @@
+﻿@model  IEnumerable<Feedback.Models.Feedback>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table>
+    <tr>
+        <th>Class#</th>
+        <th>Student Name</th>
+        <th>Recorded By</th>
+        <th>Mark</th>
+    </tr>
+    @{ foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Student.Grade.Name</td>
+                <td>@item.Student.Name</td>
+                <td>@item.Teacher.Name</td>
+                <td>@item.Mark</td>
+            </tr>
+        }
+    }
+</table>
+
