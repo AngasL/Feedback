@@ -1,0 +1,11 @@
+{
+  "ConnectionStrings": {
+    "Default": "server=YOUR_SERVER;database=AndoverFeedback;user=YOUR_USER;password=YOUR_PASSWORD;CharSet=utf8;Connect Timeout=10000;TreatTinyAsBoolean=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
