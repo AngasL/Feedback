@@ -21,4 +21,16 @@ public interface IFeedbackService
     Task<int> CreateListeningSentenceDetailAsync(ListeningSentenceDetail item, CancellationToken ct = default);
     Task<bool> UpdateListeningSentenceDetailAsync(int id, ListeningSentenceDetail item, CancellationToken ct = default);
     Task<bool> DeleteListeningSentenceDetailAsync(int id, CancellationToken ct = default);
+
+    Task<List<Reading>> GetAllReadingsAsync(int? teacherId = null, int? studentId = null, CancellationToken ct = default);
+    Task<Reading?> GetReadingByIdAsync(int id, bool includeDetails = false, CancellationToken ct = default);
+    Task<int> CreateReadingAsync(Reading item, CancellationToken ct = default);
+    Task<bool> UpdateReadingAsync(int id, Reading item, CancellationToken ct = default);
+    Task<bool> DeleteReadingAsync(int id, CancellationToken ct = default);
+
+    Task<List<ReadingSentenceDetail>> GetAllReadingSentenceDetailsAsync(int? readingId = null, CancellationToken ct = default);
+    Task<ReadingSentenceDetail?> GetReadingSentenceDetailByIdAsync(int id, CancellationToken ct = default);
+    Task<int> CreateReadingSentenceDetailAsync(ReadingSentenceDetail item, CancellationToken ct = default);
+    Task<bool> UpdateReadingSentenceDetailAsync(int id, ReadingSentenceDetail item, CancellationToken ct = default);
+    Task<bool> DeleteReadingSentenceDetailAsync(int id, CancellationToken ct = default);
 }

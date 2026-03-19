@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: feedback-api
+    ports:
+      - "5001:5001"
+    environment:
+      # 使用环境变量覆盖连接字符串，生产中按需调整
+      ASPNETCORE_ENVIRONMENT: "Development"

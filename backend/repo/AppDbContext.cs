@@ -11,6 +11,8 @@ public class AppDbContext : DbContext
     public DbSet<VOC> VOC => Set<VOC>();
     public DbSet<Listening> Listening => Set<Listening>();
     public DbSet<ListeningSentenceDetail> ListeningSentenceDetail => Set<ListeningSentenceDetail>();
+    public DbSet<Reading> Reading => Set<Reading>();
+    public DbSet<ReadingSentenceDetail> ReadingSentenceDetail => Set<ReadingSentenceDetail>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,6 +22,12 @@ public class AppDbContext : DbContext
             .HasOne(d => d.Listening)
             .WithMany(l => l.SentenceDetails)
             .HasForeignKey(d => d.ListeningId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ReadingSentenceDetail>()
+            .HasOne(d => d.Reading)
+            .WithMany(r => r.SentenceDetails)
+            .HasForeignKey(d => d.ReadingId)
             .OnDelete(DeleteBehavior.Cascade);
 
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())

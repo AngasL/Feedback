@@ -117,6 +117,101 @@ namespace Feedback.Migrations
                     b.ToTable("ListeningSentenceDetail");
                 });
 
+            modelBuilder.Entity("Feedback.model.Reading", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ArticleCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArticleTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("MarkSentenceCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NotesSummary")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("QuestionCorrectCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("QuestionCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Screening")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SentenceType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reading");
+                });
+
+            modelBuilder.Entity("Feedback.model.ReadingSentenceDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReadingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SentenceContent")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SentenceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Vocabularies")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReadingId");
+
+                    b.ToTable("ReadingSentenceDetail");
+                });
+
             modelBuilder.Entity("Feedback.model.VOC", b =>
                 {
                     b.Property<int>("Id")
@@ -180,7 +275,23 @@ namespace Feedback.Migrations
                     b.Navigation("Listening");
                 });
 
+            modelBuilder.Entity("Feedback.model.ReadingSentenceDetail", b =>
+                {
+                    b.HasOne("Feedback.model.Reading", "Reading")
+                        .WithMany("SentenceDetails")
+                        .HasForeignKey("ReadingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reading");
+                });
+
             modelBuilder.Entity("Feedback.model.Listening", b =>
+                {
+                    b.Navigation("SentenceDetails");
+                });
+
+            modelBuilder.Entity("Feedback.model.Reading", b =>
                 {
                     b.Navigation("SentenceDetails");
                 });

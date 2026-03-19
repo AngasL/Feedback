@@ -35,6 +35,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Feedback API", Version = "v1" });
+    c.TagActionsBy(api =>
+    {
+        var path = api.RelativePath ?? "";
+        if (path.Contains("voc")) return ["voc"];
+        if (path.Contains("listening")) return ["listening"];
+        if (path.Contains("reading")) return ["reading"];
+        return [api.GroupName ?? "other"];
+    });
 });
 
 builder.Services.AddCors(options =>

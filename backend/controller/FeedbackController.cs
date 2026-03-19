@@ -128,4 +128,80 @@ public class FeedbackController : ControllerBase
         if (!ok) return NotFound();
         return NoContent();
     }
+
+    [HttpGet("reading")]
+    public async Task<ActionResult<List<Reading>>> ListReading([FromQuery] int? teacherId, [FromQuery] int? studentId, CancellationToken ct = default)
+    {
+        var list = await _svc.GetAllReadingsAsync(teacherId, studentId, ct);
+        return Ok(list);
+    }
+
+    [HttpGet("reading/{id:int}")]
+    public async Task<ActionResult<Reading>> GetReading(int id, [FromQuery] bool includeDetails = false, CancellationToken ct = default)
+    {
+        var item = await _svc.GetReadingByIdAsync(id, includeDetails, ct);
+        if (item == null) return NotFound();
+        return Ok(item);
+    }
+
+    [HttpPost("reading")]
+    public async Task<ActionResult<int>> CreateReading(Reading model, CancellationToken ct = default)
+    {
+        var id = await _svc.CreateReadingAsync(model, ct);
+        return CreatedAtAction(nameof(GetReading), new { id }, id);
+    }
+
+    [HttpPut("reading/{id:int}")]
+    public async Task<ActionResult> UpdateReading(int id, Reading model, CancellationToken ct = default)
+    {
+        var ok = await _svc.UpdateReadingAsync(id, model, ct);
+        if (!ok) return NotFound();
+        return NoContent();
+    }
+
+    [HttpDelete("reading/{id:int}")]
+    public async Task<ActionResult> DeleteReading(int id, CancellationToken ct = default)
+    {
+        var ok = await _svc.DeleteReadingAsync(id, ct);
+        if (!ok) return NotFound();
+        return NoContent();
+    }
+
+    [HttpGet("reading-sentence-detail")]
+    public async Task<ActionResult<List<ReadingSentenceDetail>>> ListReadingSentenceDetail([FromQuery] int? readingId, CancellationToken ct = default)
+    {
+        var list = await _svc.GetAllReadingSentenceDetailsAsync(readingId, ct);
+        return Ok(list);
+    }
+
+    [HttpGet("reading-sentence-detail/{id:int}")]
+    public async Task<ActionResult<ReadingSentenceDetail>> GetReadingSentenceDetail(int id, CancellationToken ct = default)
+    {
+        var item = await _svc.GetReadingSentenceDetailByIdAsync(id, ct);
+        if (item == null) return NotFound();
+        return Ok(item);
+    }
+
+    [HttpPost("reading-sentence-detail")]
+    public async Task<ActionResult<int>> CreateReadingSentenceDetail(ReadingSentenceDetail model, CancellationToken ct = default)
+    {
+        var id = await _svc.CreateReadingSentenceDetailAsync(model, ct);
+        return CreatedAtAction(nameof(GetReadingSentenceDetail), new { id }, id);
+    }
+
+    [HttpPut("reading-sentence-detail/{id:int}")]
+    public async Task<ActionResult> UpdateReadingSentenceDetail(int id, ReadingSentenceDetail model, CancellationToken ct = default)
+    {
+        var ok = await _svc.UpdateReadingSentenceDetailAsync(id, model, ct);
+        if (!ok) return NotFound();
+        return NoContent();
+    }
+
+    [HttpDelete("reading-sentence-detail/{id:int}")]
+    public async Task<ActionResult> DeleteReadingSentenceDetail(int id, CancellationToken ct = default)
+    {
+        var ok = await _svc.DeleteReadingSentenceDetailAsync(id, ct);
+        if (!ok) return NotFound();
+        return NoContent();
+    }
 }
